@@ -21,6 +21,7 @@ if (!$_SESSION['user']) {
         <link rel="stylesheet" href="./css/custom.css">
         <link rel="stylesheet" href="./css/tree-table/css/jquery.treetable.css">
         <link rel="stylesheet" href="./css/tree-table/css/jquery.treetable.theme.default.css">
+        <link rel="stylesheet" href="../view/jquery-confirm/css/jquery-confirm.css">
         <title>Sistema De Gestión</title>
     </head>
 
@@ -53,7 +54,7 @@ if (!$_SESSION['user']) {
                         <div class="col-md-1">
                             <ul class=" nav nav-tabs">
                                 <li>
-                                    <button class="btn btn-warning">Log out</button>
+                                    <h5> Hello, <?php echo $_SESSION['user']->username ?></h5>
                                 </li>
                             </ul>
                         </div>
@@ -67,14 +68,14 @@ if (!$_SESSION['user']) {
                                     <div class="card-header">
                                         <h3>Add Report</h3>
                                     </div>
-                                    <form id="AddReport">
+                                    <form id="AddReport" action="../components/AddReport.php" method="post">
                                         <div class="d-flex flex-column">
                                             <div class="form-group p-2">
                                                 <label for="name">Report Name:</label>
-                                                <input type="text" id="ReportName" name="ReportName" class="form-control" plaseholder="Name" require>
+                                                <input type="text" id="ReportName" name="name" class="form-control" plaseholder="Name" require>
                                             </div>
                                             <div class="form-groups p-2">
-                                                <button type="submit" class="btn btn-primary">Submit</button>
+                                                <button type="submit" id="submitAddReport" class="btn btn-primary">Submit</button>
                                             </div>
                                         </div>
                                     </form>
@@ -96,7 +97,7 @@ if (!$_SESSION['user']) {
                                             <h3>Reports</h3>
                                         </div>
                                         <div class="card-body" id="reportsCatalog" style="color:blue">
-                                            
+
                                         </div>
                                     </div>
                                 </div>
@@ -109,11 +110,30 @@ if (!$_SESSION['user']) {
             <script src="../scripts/jquery.js"></script>
             <script src="./css/bootstrap/js/bootstrap.js"></script>
             <script src="./css/tree-table/jquery.treetable.js"></script>
+            <script src="../view/jquery-confirm/js/jquery-confirm.js"></script>
             <script src="../scripts/scripts.js"></script>
             <script src="../scripts/notify.js"></script>
             <script>
                 Reports();
             </script>
+            <?php
+            if (isset($_GET['status']) && $_GET['status'] == 500) {
+                ?>
+                <script>
+                    $.notify('<?php if (isset($_SESSION['message'])) echo $_SESSION['message']; ?>');
+                </script>
+            <?php
+        }
+        ?>
+            <?php
+            if (isset($_GET['status']) && $_GET['status'] == 200) {
+                ?>
+                <script>
+                    $.notify('<?php if (isset($_SESSION['message'])) echo $_SESSION['message']; ?>', "success");
+                </script>
+            <?php
+        }
+        ?>
         </div>
     </body>
 

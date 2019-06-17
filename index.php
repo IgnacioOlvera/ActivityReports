@@ -97,7 +97,7 @@ if (!$_SESSION['user']) {
                         <div class="col-md-1">
                             <ul class=" nav nav-tabs">
                                 <li>
-                                    <button class="btn btn-warning">Log out</button>
+                                    Hello, <?php echo $_SESSION['user']->username ?>
                                 </li>
                             </ul>
                         </div>
@@ -106,16 +106,16 @@ if (!$_SESSION['user']) {
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-11">
-                                    <h3>Reports</h3>
+                                    <h3 id="title">Reports</h3>
                                 </div>
                                 <div id="openModal" class="col-md-1">
                                     <button class="btn btn-success" data-toggle="modal" data-target="#addReportModal">Add File +</button>
                                 </div>
                             </div>
                         </div>
+                        <center><label><a href="#" id="collapse">Collapse All</label> <label>|</label> <label><a href="#" id="expand">Expand All</label></a></center>
                         <div class="card-body" id="reportsContainer">
                             <h1>No Report Selected</h1>
-
                         </div>
                     </div>
                 </div>

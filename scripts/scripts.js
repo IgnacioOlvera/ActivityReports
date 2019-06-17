@@ -20,6 +20,8 @@ function Login() {
 function MyReports() {
     $('.reports').on('click', function () {
         reportId = $(this).data('reportid');
+        $('#title').html($(this).html());
+        $('.modal-title').html($(this).html());
         $.ajax({
             data: { reportId: reportId },
             url: './components/getReports.php',
@@ -41,15 +43,18 @@ function MyReports() {
                         }
                     }
                 });
-
-
+                $('#expand').on('click', function () {
+                    $('#ReportsTable').treetable('expandAll')
+                })
+                $('#collapse').on('click', function () {
+                    $('#ReportsTable').treetable('collapseAll')
+                })
             },
             error: function () {
 
             }
         })
     });
-
 
 
     $.ajax({
@@ -273,24 +278,20 @@ function Reports() {
         }
 
     });
+    $('#submitAddReport').confirm(
+        {
+            title: 'New Report',
+            content: 'Do you confirm this new Report?',
+            buttons: {
+                confirm: function () {
+                    $('#AddReport').trigger('submit');
+                },
+                cancel: function () {
 
-    $('#AddReport').on('submit', function (e) {
-        e.preventDefault();
-        let reportName = $("#ReportName").val();
-        $.ajax({
-            data: {
-                name: reportName
-            },
-            url: '../components/AddReport.php',
-            type: 'post',
-            success: function (result) {
-                location.reload();
-            },
-            error: function () {
-                $.notify("An Error has occurred");
+                }
             }
-        });
-    });
+        }
+    );
 
     $('#NewName').on('submit', function () {
         let reportName = $("#ReportName").val();

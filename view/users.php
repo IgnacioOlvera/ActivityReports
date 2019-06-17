@@ -66,7 +66,7 @@ if (!$_SESSION['user']) {
                         <div class="col-md-1">
                             <ul class=" nav nav-tabs">
                                 <li>
-                                    <button class="btn btn-warning">Log out</button>
+                                    <h5> Hello, <?php echo $_SESSION['user']->username ?></h5>
                                 </li>
                             </ul>
                         </div>

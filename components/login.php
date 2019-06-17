@@ -7,7 +7,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     // output data of each row
     while ($row = $result->fetch_assoc()) {
-        if ($_POST['username'] == $row['username'] && $row['pass'] == md5($_POST['pass']) && $row['active'] == 1) {
+        if ($_POST['username'] == $row['username'] && $row['pass'] == md5($_POST['pass']) && $row['active'] == 1 && $row['username']=='admin' || $row['username']=='LMacias') {
             session_start();
             $_SESSION['user'] = new User($row['user_id'], $row['username']);
             $_SESSION['user']->setUserLogin(time());
