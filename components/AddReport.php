@@ -4,7 +4,7 @@ $sql = "select count(*) c from reports where name like '$_POST[name]'";
 $result = $conn->query($sql)->fetch_assoc()['c'];
 
 if ($result == "0") {
-    $sql = "insert into reports (name) values('$_POST[name]')";
+    $sql = "insert into reports (name,customer) values('$_POST[name]','$_POST[customer]')";
     if ($conn->query($sql) === TRUE) {
         session_start();
         $status = 200;

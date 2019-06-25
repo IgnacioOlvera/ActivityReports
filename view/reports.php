@@ -71,8 +71,19 @@ if (!$_SESSION['user']) {
                                     <form id="AddReport" action="../components/AddReport.php" method="post">
                                         <div class="d-flex flex-column">
                                             <div class="form-group p-2">
-                                                <label for="name">Report Name:</label>
-                                                <input type="text" id="ReportName" name="name" class="form-control" plaseholder="Name" require>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="name">Report Name:</label>
+                                                        <input type="text" id="ReportName" name="name" class="form-control" plaseholder="Name" require>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="name">Customer</label>
+                                                        <input list="customers" id="customer" class="form-control" name="customer" />
+                                                        <datalist id="customers">
+                                                        </datalist>
+                                                    </div>
+                                                </div>
+
                                             </div>
                                             <div class="form-groups p-2">
                                                 <button type="submit" id="submitAddReport" class="btn btn-primary">Submit</button>
@@ -82,8 +93,18 @@ if (!$_SESSION['user']) {
                                     <form id="NewName">
                                         <div class="d-flex flex-column">
                                             <div class="form-group p-2">
-                                                <label for="name">New Report Name:</label>
-                                                <input type="text" id="NewReportName" name="NewReportName" class="form-control" plaseholder="Name" require>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <label for="name">New Report Name:</label>
+                                                        <input type="text" id="NewReportName" name="NewReportName" class="form-control" plaseholder="Name" require>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <label for="name">Customer</label>
+                                                        <input list="customers" id="NewCustomer" class="form-control" name="customer" />
+                                                        <datalist id="NewCustomers">
+                                                        </datalist>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-groups p-2">

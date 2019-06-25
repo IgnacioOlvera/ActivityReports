@@ -271,7 +271,22 @@ function Reports() {
             $('#reportsCatalog a').on('click', function () {
                 $("#ReportName").val($(this).data('target'));
                 $('#submitNewName').attr('disabled', false);
+                $('#customer').val($(this).data('customer'));
             });
+        },
+        error: function () {
+            $.notify("An Error has occurred");
+        }
+
+    });
+    $.ajax({
+        url: '../components/getCustomers.php',
+        success: function (result) {
+            let customers = result.split(',');
+            customers.unshift();
+            while (customers.length != 0) {
+                $('#customers , #NewCustomers').append(`<option value="${customers.shift()}">`);
+            }
         },
         error: function () {
             $.notify("An Error has occurred");
@@ -293,18 +308,20 @@ function Reports() {
         }
     );
 
-    $('#NewName').on('submit', function () {
+    $('#NewName').on('submit', function (e) {
         let reportName = $("#ReportName").val();
         let newReportName = $("#NewReportName").val();
+        let newcustomer = $('#NewCustomer').val();
         $.ajax({
             data: {
                 name: reportName,
-                newName: newReportName
+                newName: newReportName,
+                customer: newcustomer
             },
             url: '../components/ChangeReportName.php',
             type: 'post',
             success: function (result) {
-                location.reload();
+                // location.reload();
             },
             error: function () {
                 $.notify("An Error has occurred");
