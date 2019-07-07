@@ -4,7 +4,7 @@ function Login() {
         var username = $("#username").val();
         var pass = $("#pass").val();
         $.ajax({
-            data: { username: username, pass: pass },
+            data: { username: username.trim(), pass: pass },
             url: '../components/login.php',
             type: 'post',
             success: function (response) {

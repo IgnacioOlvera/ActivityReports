@@ -97,7 +97,7 @@ if (!$_SESSION['user']) {
                         <div class="col-md-1">
                             <ul class=" nav nav-tabs">
                                 <li>
-                                    Hello, <?php echo $_SESSION['user']->username ?>
+                                    <a href="./components/logout.php"> Hello, <?php echo $_SESSION['user']->username ?></a>
                                 </li>
                             </ul>
                         </div>
@@ -143,20 +143,24 @@ if (!$_SESSION['user']) {
             if (isset($_GET['status']) && $_GET['status'] == 500) {
                 ?>
                 <script>
-                    $.notify('<?php if (isset($_SESSION['message'])) echo $_SESSION['message']; ?>');
+                    $.notify('<?php if (isset($_SESSION['
+                message '])) echo $_SESSION['
+                message ']; ?>');
                 </script>
             <?php
-        }
-        ?>
+            }
+            ?>
             <?php
             if (isset($_GET['status']) && $_GET['status'] == 200) {
                 ?>
                 <script>
-                    $.notify('<?php if (isset($_SESSION['message'])) echo $_SESSION['message']; ?>', "success");
+                    $.notify('<?php if (isset($_SESSION['
+                message '])) echo $_SESSION['
+                message ']; ?>', "success");
                 </script>
             <?php
-        }
-        ?>
+            }
+            ?>
         </div>
     </body>
 

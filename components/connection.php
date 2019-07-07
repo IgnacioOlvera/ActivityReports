@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "repoclientes";
+$dbname = "qmcmexc_repoclientes";
 // $servername = "xlcp19001.xpress.com.mx:3306";
 // $username = "qmcmexc_CliRepo";
 // $password = "S8=QFqI_^_@P";
