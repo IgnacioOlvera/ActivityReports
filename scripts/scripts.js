@@ -192,9 +192,10 @@ function Users() {
     });
     let active = 0;
     $('#ResultUser').on('submit', function (e) {
-        e.preventDefault();
+        // e.preventDefault();
         let data = {
-            username: $("#findusername").val(),
+            user: $("#findusername").val(),
+            username: $("#foundUsername").val(),
             name: $('#foundName').val(),
             email: $('#foundEmail').val(),
             state: active
@@ -214,6 +215,16 @@ function Users() {
         });
 
     });
+
+    $('#findusername').on('keyup', function () {
+        for (let index = 0; index < $('#list a').length; index++) {
+            if ($(this).val() == $($('#list a')[index]).html()) {
+                alert(`A user called ${$(this).val()} already exists`)
+            }
+
+
+        }
+    })
 
     $('#UserPermissionForm').on('submit', function (e) {
         e.preventDefault();
