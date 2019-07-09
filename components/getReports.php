@@ -2,7 +2,7 @@
 #This module provides the li elements (Reports) of the unordered list in MyReports Section.
 #Throws the reports the user is able to see.
 require('connection.php');
-$sql = "select year(f.date) year, monthname(f.date) month, week(f.date) week,  f.file_name fname, route from files f where f.report_id = $_POST[reportId] order by f.date";
+$sql = "select year(f.date) year, monthname(f.date) month, week(f.date) week,  f.file_name fname, route,f.report_id id from files f where f.report_id = $_POST[reportId] order by f.date";
 $result = $conn->query($sql);
 $table = "<table id='ReportsTable'>";
 if ($result->num_rows > 0) {
@@ -46,7 +46,7 @@ if ($result->num_rows > 0) {
             $table .= "<tr data-tt-id='$count' data-tt-parent-id='$month'><td>Week $w</td></tr>";
             $count++;
         }
-        $table .= "<tr data-tt-id='$count' data-tt-parent-id='$week'><td><a href='$row[route]'>$row[fname]</a> <span style='float:right'><a href='./components/deleteReports.php?fileName=$row[fname]&route=$row[route]' class='delete'>x</a></span></td></tr>";
+        $table .= "<tr data-tt-id='$count' data-tt-parent-id='$week'><td><a href='$row[route]'>$row[fname]</a> <a href='./components/deleteReports.php?fileName=$row[fname]&route=$row[route]' class='delete'><span style='float:right'>x</span></a> <a href='./components/sendEmailNotification.php?reportId=$row[id]&fname=$row[fname]'><span class='float:right'>Notify</span></a></td></tr>";
         $count++;
     }
     echo $table . "</table>";
