@@ -1,6 +1,6 @@
 <?php
 require('connection.php');
-$sql = "select u.email email from permissions p inner join users u on u.user_id = p.permission_id and p.report_id = $_GET[reportId]";
+$sql = "select u.email email from permissions p inner join users u on u.user_id = p.permission_id and p.report_id = $_GET[reportId] and u.email!=''";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     $to = "";
